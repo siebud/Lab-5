@@ -131,7 +131,7 @@ public class Calculator
         {
         case 1 : 
         		if(!tokens[0].contentEquals("quit"))
-        			throw new CalculatorException("Illegal Token Length");
+        			throw new CalculatorException("Illegal Command");
         		else
         			return Integer.MIN_VALUE;
         case 2: 
@@ -180,7 +180,7 @@ public class Calculator
     	{
     		execute(into);
     	if (execute(into) == Integer.MIN_VALUE)
-    		System.out.println("end");
+    		return "quit";
     	return String.format("The result is: %d", execute(into));
     	}
     	catch (ArithmeticException e)
