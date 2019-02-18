@@ -35,7 +35,7 @@ public class Calculator
     protected static int calculateTwoTokens(String[] tokens) throws NumberFormatException, CalculatorException
     {
         int a = Integer.parseInt(tokens[1]); // Throws NumberFormatException if the second token is not an int value.
-        String command = tokens[1];
+        String command = tokens[0];
         int ans = 0;
         // TODO: complete this...
         if(command.contentEquals("negative"))
