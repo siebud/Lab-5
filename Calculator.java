@@ -35,7 +35,16 @@ public class Calculator
     protected static int calculateTwoTokens(String[] tokens) throws NumberFormatException, CalculatorException
     {
         int a = Integer.parseInt(tokens[1]); // Throws NumberFormatException if the second token is not an int value.
+        String command = tokens[1];
+        int ans = 0;
         // TODO: complete this...
+        if(command.contentEquals("negative"))
+        	ans = a * (-1);
+        else if (command.contentEquals("halve"))
+        	ans = a / 2;
+        else
+        	throw new CalculatorException("Illegal Command");
+        return ans;
     }
 
     /**
@@ -70,6 +79,21 @@ public class Calculator
             throws ArithmeticException, NumberFormatException, CalculatorException
     {
         // TODO: complete this...
+    	int a = Integer.parseInt(tokens[0]);
+    	int b = Integer.parseInt(tokens[2]);
+    	String command = tokens[1];
+    	int ans = 0;
+    	
+    	if ( command.contentEquals("+"))
+    		ans = a + b;
+    	else if (command.contentEquals("-"))
+    		ans = a - b;
+    	else if (command.contentEquals("/"))
+    		ans = a / b;
+    	else 
+    		throw new CalculatorException("Illegal Command");
+    	return ans;
+    	
     }
 
     /**
@@ -108,14 +132,15 @@ public class Calculator
         case 1 : 
         		if(!tokens[0].contentEquals("quit"))
         			throw new CalculatorException("Illegal Token Length");
-        	break;
-        case 2: calculateTwoTokens(tokens);
-        	break;
-        case 3: calculateThreeTokens(tokens);
-        	break;
+        		else
+        			return Integer.MIN_VALUE;
+        case 2: 
+        	return calculateTwoTokens(tokens);
+        case 3: 
+        	return calculateThreeTokens(tokens);
             // TODO: complete this...
         }
-        return 0;
+        throw new CalculatorException("Illegal Token Length");
     }
 
     /**
@@ -152,14 +177,25 @@ public class Calculator
     	String[] into;
     	into = input.split(" ");
     	try
-    	{execute(into);
-    	}
-    	catch (Exception e)
     	{
-    	
+    		execute(into);
+    	if (execute(into) == Integer.MIN_VALUE)
+    		System.out.println("end");
+    	return String.format("The result is: %d", execute(into));
     	}
-    	return "";
-    	
+    	catch (ArithmeticException e)
+    	{
+    		System.out.println("Attempted to divide by 0. Please try again.");
+    	}
+    	catch (NumberFormatException e)
+    	{
+    		System.out.println("Input cannot be parsed to an int. Please try again.");
+    	}
+    	catch (CalculatorException e)
+    	{
+    		System.out.println(String.format("Calculator Exception, message is: %s", e));
+    	}
+    	return"";
         // TODO: complete this...
         // Hint: you should try and call execute(). If execute encounters an error, it will throw an exception. This
         // method will catch those exceptions and respond accordingly.
