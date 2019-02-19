@@ -71,7 +71,7 @@ public class CalculatorTest {
              Calculator.calculateTwoTokens(new String[] {"too", "7"});
              Assert.fail("Illegal expression did not throw an Exception");
          }
-         catch (NumberFormatException e)
+         catch (CalculatorException e)
          {
              // We expect the function to throw a CalculatorException (from Illegal Command)
              // Success; Assert.fail will not be thrown and the code will complete the test, thus succeeding.
@@ -179,7 +179,7 @@ public class CalculatorTest {
         // TODO: complete this test...
     	  try
           {
-              Calculator.calculateThreeTokens(new String[] {"5", "&", "5"});
+              Calculator.calculateThreeTokens(new String[] {"10", "&", "5"});
               Assert.fail("Illegal expression did not throw an Exception");
           }
           catch (CalculatorException e)
@@ -381,7 +381,7 @@ public class CalculatorTest {
     public void parseAndExecuteTestInvalidCommand() throws AssertException
     {
         String result = Calculator.parseAndExecute("foo 6");
-        Assert.assertEquals("Calculator Exception, message is: CalculatorException: Illegal Command", result);
+        Assert.assertEquals("Calculator Exception, message is: Illegal Command", result);
     }
 
     /**
@@ -391,6 +391,6 @@ public class CalculatorTest {
     {
         // TODO: complete this test...
     	String result = Calculator.parseAndExecute("foo 6 is lengthy");
-        Assert.assertEquals("Calculator Exception, message is: CalculatorException: Illegal Token Length", result);
+        Assert.assertEquals("Calculator Exception, message is: Illegal Token Length", result);
     }
 }

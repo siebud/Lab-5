@@ -38,7 +38,7 @@ public class Calculator
         String command = tokens[0];
         int ans = 0;
         // TODO: complete this...
-        if(command.contentEquals("negative"))
+        if(command.contentEquals("negate"))
         	ans = a * (-1);
         else if (command.contentEquals("halve"))
         	ans = a / 2;
@@ -185,17 +185,16 @@ public class Calculator
     	}
     	catch (ArithmeticException e)
     	{
-    		System.out.println("Attempted to divide by 0. Please try again.");
+    		return ("Attempted to divide by 0. Please try again.");
     	}
     	catch (NumberFormatException e)
     	{
-    		System.out.println("Input cannot be parsed to an int. Please try again.");
+    		return("Input number cannot be parsed to an int. Please try again.");
     	}
     	catch (CalculatorException e)
     	{
-    		System.out.println(String.format("Calculator Exception, message is: %s", e));
+    		return(String.format("Calculator Exception, message is: %s", e.getMessage()));
     	}
-    	return"";
         // TODO: complete this...
         // Hint: you should try and call execute(). If execute encounters an error, it will throw an exception. This
         // method will catch those exceptions and respond accordingly.
